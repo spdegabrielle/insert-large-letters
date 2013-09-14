@@ -16,23 +16,14 @@
     (define (phase1) (void))
     (define (phase2) (void))
     
-    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    
-    
-    
-    ;;;;;;
-    
-    
-    
-    ;;;;;;;;;;;;;;;;
-    
     
     (define frame-mixin 
       (mixin (drracket:unit:frame<%>) () 
         
         (inherit get-current-tab get-menu-bar get-button-panel
                  register-toolbar-button
-                 get-edit-target-object)
+                 get-edit-target-object
+                 get-definitions-text)
         
         (define freq-canvas #f)
         (define freq-panel-parent #f)
@@ -146,8 +137,7 @@
                (get-default-font)])))
         
         (define columns-string "~a columns")
-        
-        
+                
         
         (define (get-w-size dc face-name)
           (let ([font (send the-font-list find-or-create-font 24 face-name 'default 'normal 'normal)])
@@ -208,8 +198,7 @@
           (send edit end-edit-sequence)
           (send bdc set-bitmap #f)
           bitmap) ;render-large-letters
-        
-        
+                
         (define (insert-large-semicolon-letters)
           (let ([edit (get-edit-target-object)])
             (when edit
@@ -222,17 +211,19 @@
                     (values ";" #\;)))
               (insert-large-letters comment-prefix comment-character edit this))))
         
-        (register-capability-menu-item 'drscheme:special:insert-large-letters insert-menu)         
+       ; do I need to register a capability and a capability-menu-item? 
+       ;(register-capability-menu-item 'drscheme:special:insert-large-letters insert-menu)         
         
         (super-new)
+        
+        (define definitions-text (send this get-definitions-text))
         
         (new menu-item%  
              [label (string-constant insert-large-letters...)]
              [parent (send this get-insert-menu)]
              [callback (λ (x y) (insert-large-semicolon-letters))])
         
-        
-        (send freq-canvas set-editor (send (get-current-tab) get-counts-txt))))
+        ))
     
     (drracket:get/extend:extend-unit-frame frame-mixin)
     ))
