@@ -1,4 +1,4 @@
-#lang setup/infotab
+#lang info
 (define name "Insert Large Letters")
 (define version "0.0.1")
 (define release-notes '("for 5.x"))
