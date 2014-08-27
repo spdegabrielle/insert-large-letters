@@ -1,9 +1,10 @@
-#lang racket/gui
+#lang typed/racket
 (require drracket/tool
-         typed/racket
-         typed/mred/mred
-         typed/framework/framework
+         racket/gui/base
          racket/class
+         ;typed/racket
+         ;typed/mred/mred
+         typed/framework/framework
          string-constants/string-constant
          "bitmap-message.rkt")
 
@@ -219,7 +220,7 @@
         (define definitions-text (send this get-definitions-text))
         
         (new menu-item%  
-             [label (string-constant insert-large-letters...)]
+             [label "ILL" #;(string-constant insert-large-letters...)]
              [parent (send this get-insert-menu)]
              [callback (λ (x y) (insert-large-semicolon-letters))])
         
