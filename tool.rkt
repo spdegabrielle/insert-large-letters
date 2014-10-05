@@ -1,12 +1,26 @@
 #lang typed/racket
+
 (require drracket/tool
-         racket/gui/base
-         racket/class
-         ;typed/racket
-         ;typed/mred/mred
+         ;racket/gui
+        ; 
+        typed/mred/mred
          typed/framework/framework
-         string-constants/string-constant
-         "bitmap-message.rkt")
+         racket/class
+         string-constants
+         )
+
+(require/typed framework
+               [frame:focus-table-mixin
+                (-> Dialog% Dialog%)])
+
+(define-type Bitmap-Message%
+  (Class (init [parent (Instance Horizontal-Panel%)])
+         [set-bm ((U (Instance Bitmap%) #f) -> Void)]))
+
+(require/typed "bitmap-message.rkt"
+               [bitmap-message% Bitmap-Message%])
+
+
 
 (provide tool@)
 
