@@ -16,7 +16,8 @@
 (require/typed "bitmap-message.rkt"
                [bitmap-message% Bitmap-Message%])
 
-(provide insert-large-letters)
+(provide insert-large-letters ;the-font-list
+         )
 
 (: insert-large-letters (String Char (Instance Text:Basic%) Any -> Void))
 (define (insert-large-letters comment-prefix comment-character edit parent)
