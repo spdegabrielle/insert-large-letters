@@ -9,8 +9,7 @@
          ;typed/racket
          ;typed/mred/mred
          string-constants
-         "insert-large-letters.rkt"
-         )
+         "insert-large-letters.rkt")
 
 ;(define columns-string "~a columns")
 
